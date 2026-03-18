@@ -1,0 +1,29 @@
+name: Addonresuki
+permissions:
+  contents: write
+on:
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 当前仓库
+        uses: actions/checkout@v4
+
+      - name: 克隆目标仓库
+        run: git clone --depth=1 -b sixteen https://github.com/SOVIET-ANDROID/kernel_xiaomi_raphael.git source
+
+      - name: 复制到当前仓库
+        run: |
+          cp -r source/* .
+          rm -rf source
+
+      - name: 提交并推送
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "sync kernel" || echo "no changes"
+          git push
