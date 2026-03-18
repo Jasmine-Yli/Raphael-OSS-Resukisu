@@ -1,7 +1,8 @@
 name: Ado
-
+permissions:
+  contents: write
 on:
-  push:
+  
   workflow_dispatch:
 
 jobs:
