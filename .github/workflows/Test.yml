@@ -1,0 +1,21 @@
+name: Test
+permissions:
+  contents: write
+on:
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: DEBUG
+       run: |
+        echo "==== PWD ===="
+        pwd
+        echo "==== FILES ===="
+        ls -al
+        echo "==== ROOT FILES ===="
+        ls -al /
+        echo "==== HOME FILES ===="
+        ls -al ~
